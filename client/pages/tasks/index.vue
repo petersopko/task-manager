@@ -34,44 +34,13 @@
 
     <!-- Tasks list -->
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
+      <TaskCard
         v-for="task in taskStore.tasks"
         :key="task.id"
-        class="bg-white p-4 rounded shadow"
-      >
-        <div class="flex justify-between items-start">
-          <h2 class="text-lg font-semibold">{{ task.title }}</h2>
-          <div class="flex space-x-2">
-            <Button @click="editTask(task)" variant="text" size="sm">
-              Edit
-            </Button>
-            <Button
-              @click="handleDeleteTask(task.id)"
-              variant="text"
-              size="sm"
-              className="text-red-600 hover:text-red-800"
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-        <p class="text-gray-600 mt-2">{{ task.description }}</p>
-        <div class="mt-4 flex justify-between items-center">
-          <span
-            :class="{
-              'bg-yellow-100 text-yellow-800': task.status === 'pending',
-              'bg-blue-100 text-blue-800': task.status === 'in-progress',
-              'bg-green-100 text-green-800': task.status === 'done',
-            }"
-            class="px-2 py-1 rounded text-sm"
-          >
-            {{ task.status }}
-          </span>
-          <span v-if="task.dueDate" class="text-sm text-gray-500">
-            Due: {{ formatDate(task.dueDate) }}
-          </span>
-        </div>
-      </div>
+        :task="task"
+        @edit="editTask"
+        @delete="handleDeleteTask"
+      />
     </div>
 
     <!-- Task Form Modal -->
@@ -91,6 +60,7 @@ import { useAuthStore } from "~/stores/auth";
 import { useTaskStore } from "~/stores/task";
 import type { Task, TaskFormData } from "~/types";
 import Button from "~/components/Button.vue";
+import TaskCard from "~/components/TaskCard.vue";
 
 const authStore = useAuthStore();
 const taskStore = useTaskStore();
