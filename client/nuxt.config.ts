@@ -14,4 +14,14 @@ export default defineNuxtConfig({
     cookie: {},
     cookieName: "strapi_jwt",
   },
+
+  // Expose runtime config
+  runtimeConfig: {
+    public: {
+      strapi: {
+        url: process.env.STRAPI_URL || "http://localhost:1337",
+      },
+      baseUrl: process.env.PUBLIC_BASE_URL || "http://localhost:3000",
+    },
+  },
 });

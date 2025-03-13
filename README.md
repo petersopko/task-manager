@@ -62,9 +62,28 @@ The Strapi backend will be available at http://localhost:1337.
 
 The Nuxt frontend will be available at http://localhost:3000.
 
-## Configuring Strapi Permissions
+The project includes an `.env.example` file in the `/client` directory that you can use as a template:
 
-When starting the application for the first time, you need to configure permissions in Strapi to allow authenticated users to interact with tasks:
+1. Copy the example file to create your own `.env` file:
+
+   ```
+   cp client/.env.example client/.env
+   ```
+
+2. For development, you can use the example values as-is, but for production, update the `STRAPI_URL` to point to your production Strapi instance.
+
+The following environment variables are used by the Nuxt frontend:
+
+| Variable        | Description                                                                 |
+| --------------- | --------------------------------------------------------------------------- |
+| STRAPI_URL      | The URL of your Strapi backend (default: http://localhost:1337)             |
+| PUBLIC_BASE_URL | (Optional) The public URL of your frontend (default: http://localhost:3000) |
+
+## ⚠️ IMPORTANT: Configuring Strapi Permissions ⚠️
+
+> **CRITICAL SETUP STEP**: Without completing these permission settings, users will not be able to access or manage tasks!
+
+When starting the application for the first time, you **MUST** configure permissions in Strapi to allow authenticated users to interact with tasks:
 
 1. After starting the Strapi server, navigate to http://localhost:1337/admin
 2. Create an admin account if you haven't already
@@ -77,6 +96,8 @@ When starting the application for the first time, you need to configure permissi
    - update (PUT)
    - delete (DELETE)
 6. Save your changes
+
+**⚠️ WARNING**: Skipping this configuration will result in authentication errors and prevent the application from functioning correctly. This is a required step that cannot be automated (in an easy manner).
 
 This configuration ensures that authenticated users can perform all CRUD operations on their tasks.
 
@@ -100,25 +121,52 @@ This configuration ensures that authenticated users can perform all CRUD operati
 
 ### Backend (Strapi)
 
-Create a `.env` file in the `/api` directory with the following variables:
+The project includes an `.env.example` file in the `/api` directory that you can use as a template:
 
+1. Copy the example file to create your own `.env` file:
+
+   ```
+   cp api/.env.example api/.env
+   ```
+
+2. For development, you can use the example values as-is, but for production, replace all security keys and secrets with strong random values.
+
+You can generate secure random strings using Node.js:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(16).toString('base64'))"
 ```
-HOST=0.0.0.0
-PORT=1337
-APP_KEYS=your-app-keys
-API_TOKEN_SALT=your-api-token-salt
-ADMIN_JWT_SECRET=your-admin-jwt-secret
-TRANSFER_TOKEN_SALT=your-transfer-token-salt
-JWT_SECRET=your-jwt-secret
-```
+
+The following environment variables are required for Strapi:
+
+| Variable            | Description                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| HOST                | The host address Strapi will run on (0.0.0.0 allows external connections) |
+| PORT                | The port Strapi will use (default: 1337)                                  |
+| APP_KEYS            | Comma-separated keys used for cookie encryption                           |
+| API_TOKEN_SALT      | Salt used for API token generation                                        |
+| ADMIN_JWT_SECRET    | Secret for admin panel authentication                                     |
+| TRANSFER_TOKEN_SALT | Salt used for data transfer operations                                    |
+| JWT_SECRET          | Secret for user authentication (critical for frontend integration)        |
 
 ### Frontend (Nuxt)
 
-Create a `.env` file in the `/client` directory with the following variables:
+The project includes an `.env.example` file in the `/client` directory that you can use as a template:
 
-```
-STRAPI_URL=http://localhost:1337
-```
+1. Copy the example file to create your own `.env` file:
+
+   ```
+   cp client/.env.example client/.env
+   ```
+
+2. For development, you can use the example values as-is, but for production, update the `STRAPI_URL` to point to your production Strapi instance.
+
+The following environment variables are used by the Nuxt frontend:
+
+| Variable        | Description                                                                 |
+| --------------- | --------------------------------------------------------------------------- |
+| STRAPI_URL      | The URL of your Strapi backend (default: http://localhost:1337)             |
+| PUBLIC_BASE_URL | (Optional) The public URL of your frontend (default: http://localhost:3000) |
 
 ## License
 

@@ -89,11 +89,15 @@ async function checkPermissions() {
       return;
     }
 
-    const userResponse = await fetch("http://localhost:1337/api/users/me", {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
+    const config = useRuntimeConfig();
+    const userResponse = await fetch(
+      `${config.public.strapi.url}/api/users/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
 
     if (!userResponse.ok) {
       return;

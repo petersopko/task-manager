@@ -6,6 +6,7 @@ export const useTaskStore = defineStore("task", () => {
   const loading = ref(false);
   const error = ref<string | null>(null);
   const currentTask = ref<Task | null>(null);
+  const config = useRuntimeConfig();
 
   // Actions
   async function fetchTasks() {
@@ -67,7 +68,9 @@ export const useTaskStore = defineStore("task", () => {
       }
 
       // Direct fetch approach - more reliable
-      const apiUrl = `http://localhost:1337/api/tasks/${taskId}`;
+      const apiUrl = `${
+        useRuntimeConfig().public.strapi.url
+      }/api/tasks/${taskId}`;
 
       const response = await fetch(apiUrl, {
         method: "DELETE",
