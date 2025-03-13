@@ -53,6 +53,5 @@
 <script setup>
 // Use the auth store
 const authStore = useAuthStore();
-import Button from "~/components/Button.vue";
 const router = useRouter();
 </script>

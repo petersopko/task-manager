@@ -4,39 +4,27 @@
       <h1 class="text-2xl font-bold mb-6 text-center">Register</h1>
 
       <form @submit.prevent="handleRegister">
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 mb-2">Email</label>
-          <input
-            id="email"
-            v-model="form.email"
-            type="email"
-            class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            required
-            autocomplete="email"
-          />
-        </div>
+        <FormInput
+          id="email"
+          label="Email"
+          v-model="form.email"
+          type="email"
+          required
+          autocomplete="email"
+        />
 
-        <div class="mb-6">
-          <label for="password" class="block text-gray-700 mb-2"
-            >Password</label
-          >
-          <input
-            id="password"
-            v-model="form.password"
-            type="password"
-            class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            required
-            minlength="6"
-            autocomplete="new-password"
-          />
-          <p class="text-xs text-gray-500 mt-1">
-            Password must be at least 6 characters
-          </p>
-        </div>
+        <FormInput
+          id="password"
+          label="Password"
+          v-model="form.password"
+          type="password"
+          required
+          minlength="6"
+          autocomplete="new-password"
+          hint="Password must be at least 6 characters"
+        />
 
-        <div v-if="error" class="mb-4 p-3 bg-red-100 text-red-700 rounded">
-          {{ error }}
-        </div>
+        <ErrorAlert :message="error" />
 
         <Button
           type="submit"
@@ -70,7 +58,6 @@
 // Use the auth store
 const authStore = useAuthStore();
 const router = useRouter();
-import Button from "~/components/Button.vue";
 
 const form = reactive({
   email: "",
