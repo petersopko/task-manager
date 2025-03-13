@@ -4,7 +4,12 @@
     <select
       :id="id"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit(
+          'update:modelValue',
+          ($event.target as HTMLSelectElement)?.value || ''
+        )
+      "
       :required="required"
       :autocomplete="autocomplete"
       class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
@@ -26,7 +31,7 @@ defineProps({
     required: true,
   },
   modelValue: {
-    type: [String, Number],
+    type: String,
     default: "",
   },
   required: {

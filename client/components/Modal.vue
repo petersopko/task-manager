@@ -3,7 +3,9 @@
     v-if="isOpen"
     class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50"
   >
-    <div class="bg-white rounded-lg p-6 max-w-md w-full">
+    <div
+      class="bg-white rounded-lg p-6 max-w-full md:max-w-md w-full h-full md:h-auto"
+    >
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold">{{ title }}</h2>
         <Button
@@ -22,8 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import Button from "~/components/Button.vue";
-
 defineProps({
   isOpen: {
     type: Boolean,

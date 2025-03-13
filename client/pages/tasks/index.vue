@@ -47,6 +47,7 @@
     <TaskForm
       v-if="showAddTaskForm"
       :task="taskStore.currentTask"
+      :isOpen="showAddTaskForm"
       @close="closeTaskForm"
       @save="saveTask"
     />

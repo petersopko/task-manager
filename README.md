@@ -34,7 +34,13 @@ A full-stack task management application built with Nuxt 3 and Strapi v5.
    bun install
    ```
 
-3. Start the development server:
+3. (Optional for development) Create a .env file:
+
+   ```
+   cp .env.example .env
+   ```
+
+4. Start the development server:
    ```
    bun dev
    ```
@@ -55,7 +61,13 @@ The Strapi backend will be available at http://localhost:1337.
    bun install
    ```
 
-3. Start the development server:
+3. (Optional for development) Create a .env file:
+
+   ```
+   cp .env.example .env
+   ```
+
+4. Start the development server:
    ```
    bun dev
    ```
@@ -71,6 +83,8 @@ The project includes an `.env.example` file in the `/client` directory that you 
    ```
 
 2. For development, you can use the example values as-is, but for production, update the `STRAPI_URL` to point to your production Strapi instance.
+
+> **Note**: The Nuxt frontend includes fallback values for all required environment variables, so it will start without a `.env` file. By default, it will connect to a Strapi instance running at http://localhost:1337.
 
 The following environment variables are used by the Nuxt frontend:
 
@@ -130,6 +144,8 @@ The project includes an `.env.example` file in the `/api` directory that you can
    ```
 
 2. For development, you can use the example values as-is, but for production, replace all security keys and secrets with strong random values.
+
+> **Note**: The application includes fallback values for all required environment variables, so it will start without a `.env` file. However, these fallbacks are **NOT SECURE** and should only be used for development. Always create proper `.env` files with secure values for production deployments.
 
 You can generate secure random strings using Node.js:
 

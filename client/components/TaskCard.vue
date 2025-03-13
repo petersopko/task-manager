@@ -36,9 +36,6 @@
 
 <script setup lang="ts">
 import type { Task } from "~/types";
-import Button from "~/components/Button.vue";
-import StatusBadge from "~/components/StatusBadge.vue";
-import DateDisplay from "~/components/DateDisplay.vue";
 
 defineProps<{
   task: Task;

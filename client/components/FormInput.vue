@@ -4,7 +4,12 @@
     <input
       :id="id"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit(
+          'update:modelValue',
+          ($event.target as HTMLInputElement)?.value || ''
+        )
+      "
       :type="type"
       :required="required"
       :minlength="minlength"

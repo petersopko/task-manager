@@ -6,7 +6,12 @@
         :id="id"
         ref="datePickerInput"
         :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="
+          $emit(
+            'update:modelValue',
+            ($event.target as HTMLInputElement)?.value || ''
+          )
+        "
         type="date"
         :required="required"
         :autocomplete="autocomplete"
@@ -37,8 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 defineProps({
   id: {
     type: String,

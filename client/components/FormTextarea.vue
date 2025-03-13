@@ -4,11 +4,16 @@
     <textarea
       :id="id"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit(
+          'update:modelValue',
+          ($event.target as HTMLTextAreaElement)?.value || ''
+        )
+      "
       :required="required"
       :rows="rows"
-      :placeholder="placeholder"
       :autocomplete="autocomplete"
+      :placeholder="placeholder"
       class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
     ></textarea>
     <p v-if="hint" class="text-xs text-gray-500 mt-1">{{ hint }}</p>
@@ -37,13 +42,13 @@ defineProps({
     type: [String, Number],
     default: 3,
   },
-  placeholder: {
-    type: String,
-    default: "",
-  },
   autocomplete: {
     type: String,
     default: "off",
+  },
+  placeholder: {
+    type: String,
+    default: "",
   },
   hint: {
     type: String,
