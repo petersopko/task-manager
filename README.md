@@ -36,7 +36,7 @@ A full-stack task management application built with Nuxt 3 and Strapi v5.
 
 3. Start the development server:
    ```
-   bun develop
+   bun dev
    ```
 
 The Strapi backend will be available at http://localhost:1337.
@@ -57,7 +57,7 @@ The Strapi backend will be available at http://localhost:1337.
 
 3. Start the development server:
    ```
-   bun run dev
+   bun dev
    ```
 
 The Nuxt frontend will be available at http://localhost:3000.
