@@ -62,6 +62,24 @@ The Strapi backend will be available at http://localhost:1337.
 
 The Nuxt frontend will be available at http://localhost:3000.
 
+## Configuring Strapi Permissions
+
+When starting the application for the first time, you need to configure permissions in Strapi to allow authenticated users to interact with tasks:
+
+1. After starting the Strapi server, navigate to http://localhost:1337/admin
+2. Create an admin account if you haven't already
+3. Go to Settings → Users & Permissions Plugin → Roles
+4. Select the "Authenticated" role
+5. In the Permissions section, find "Task" and enable the following permissions:
+   - find (GET)
+   - findOne (GET)
+   - create (POST)
+   - update (PUT)
+   - delete (DELETE)
+6. Save your changes
+
+This configuration ensures that authenticated users can perform all CRUD operations on their tasks.
+
 ## API Endpoints
 
 ### Authentication
